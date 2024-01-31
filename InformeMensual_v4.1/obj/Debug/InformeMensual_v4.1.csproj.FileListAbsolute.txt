@@ -60,7 +60,6 @@ C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\bin\Debug
 C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\bin\Debug\System.ValueTuple.xml
-C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\obj\Debug\InformeMensual_v4.1.csproj.AssemblyReference.cache
 C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\obj\Debug\InformeMensual_v4._1.Form1.resources
 C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\obj\Debug\InformeMensual_v4._1.Form2.resources
 C:\Users\jialfaro\source\repos\InformeMensual_v4.1\InformeMensual_v4.1\obj\Debug\InformeMensual_v4._1.Properties.Resources.resources

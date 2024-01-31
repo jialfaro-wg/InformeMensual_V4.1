@@ -33,6 +33,7 @@ namespace InformeMensual_v4._1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.btnDescargarInforme = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.pdfPrintDocument1 = new Patagames.Pdf.Net.Controls.WinForms.PdfPrintDocument();
@@ -42,7 +43,7 @@ namespace InformeMensual_v4._1
             // btnDescargarInforme
             // 
             this.btnDescargarInforme.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarInforme.Location = new System.Drawing.Point(203, 395);
+            this.btnDescargarInforme.Location = new System.Drawing.Point(199, 412);
             this.btnDescargarInforme.Name = "btnDescargarInforme";
             this.btnDescargarInforme.Size = new System.Drawing.Size(75, 23);
             this.btnDescargarInforme.TabIndex = 1;
@@ -53,7 +54,7 @@ namespace InformeMensual_v4._1
             // btnFinalizar
             // 
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizar.Location = new System.Drawing.Point(490, 394);
+            this.btnFinalizar.Location = new System.Drawing.Point(486, 411);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(75, 23);
             this.btnFinalizar.TabIndex = 2;
@@ -72,7 +73,7 @@ namespace InformeMensual_v4._1
             // 
             // pdfViewer1
             // 
-            this.pdfViewer1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pdfViewer1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pdfViewer1.CurrentIndex = -1;
             this.pdfViewer1.CurrentPageHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
             this.pdfViewer1.Document = null;
@@ -94,7 +95,7 @@ namespace InformeMensual_v4._1
             this.pdfViewer1.ShowCurrentPageHighlight = true;
             this.pdfViewer1.ShowLoadingIcon = true;
             this.pdfViewer1.ShowPageSeparator = true;
-            this.pdfViewer1.Size = new System.Drawing.Size(708, 364);
+            this.pdfViewer1.Size = new System.Drawing.Size(708, 385);
             this.pdfViewer1.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.FitToWidth;
             this.pdfViewer1.TabIndex = 3;
             this.pdfViewer1.TextSelectColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
@@ -107,11 +108,12 @@ namespace InformeMensual_v4._1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(775, 429);
+            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.ClientSize = new System.Drawing.Size(775, 446);
             this.Controls.Add(this.pdfViewer1);
             this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.btnDescargarInforme);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "Informe Mensual";
             this.ResumeLayout(false);

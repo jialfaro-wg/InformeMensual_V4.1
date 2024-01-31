@@ -31,6 +31,7 @@ namespace InformeMensual_v4._1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cmbMes = new System.Windows.Forms.ComboBox();
             this.btnCargarExcel = new System.Windows.Forms.Button();
             this.btnAplicarFiltro = new System.Windows.Forms.Button();
@@ -102,6 +103,7 @@ namespace InformeMensual_v4._1
             this.Controls.Add(this.btnAplicarFiltro);
             this.Controls.Add(this.btnCargarExcel);
             this.Controls.Add(this.cmbMes);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Informe Mensual";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -63,14 +63,23 @@ namespace InformeMensual_v4._1
                         dataTable.Columns.Add(firstRowCell.Text);
                     }
 
-                    for (int rowNumber = 2; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
+                    for (int rowNumber = 3; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
                     {
                         var row = worksheet.Cells[rowNumber, 1, rowNumber, worksheet.Dimension.End.Column];
                         var newRow = dataTable.NewRow();
 
                         foreach (var cell in row)
                         {
-                            newRow[cell.Start.Column - 1] = cell.Text;
+                            //newRow[cell.Start.Column - 1] = cell.Text;
+                            int columnIndex = cell.Start.Column - 1;
+
+                            if (columnIndex >= 0 && columnIndex < dataTable.Columns.Count)
+
+                            {
+
+                                newRow[columnIndex] = cell.Text;
+
+                            }
                         }
 
                         dataTable.Rows.Add(newRow);
@@ -124,7 +133,7 @@ namespace InformeMensual_v4._1
                     TipoTKT = row["Tipo-TKT"].ToString(),
                     NTK = row["N°TK"].ToString(),
                     Estado = row["Estado"].ToString(),
-                    NameWS = row["Name WS"].ToString()
+                    NameWS = row["WS"].ToString()
                 };
 
                 tickets.Add(ticket);
@@ -142,7 +151,7 @@ namespace InformeMensual_v4._1
         private void GeneratePDF(List<Ticket> tickets)
         {
             // Crear un archivo temporal para el PDF
-            string tempPdfPath = Path.Combine(Path.GetTempPath(), "Informe.pdf");
+            string tempPdfPath = Path.Combine(Path.GetTempPath(), "Informe Mensual de Tickets.pdf");
 
             using (var writer = new PdfWriter(tempPdfPath))
             {
@@ -150,40 +159,41 @@ namespace InformeMensual_v4._1
                 {
                     var document = new Document(pdf);
 
-                    document.Add(new Paragraph("--------------------------------------------------------------").SetBold());
-                    document.Add(new Paragraph("------------------INFORME MENSUAL---------------").SetBold());
-                    document.Add(new Paragraph("--------------------------------------------------------------").SetBold());
+                    document.Add(new Paragraph("----------------------------------------------------------------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph("-------------------INFORME MENSUAL----------------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph("----------------------------------------------------------------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
-                    document.Add(new Paragraph($"Mes a evalauar: {selectedMonth.ToUpper()}").SetBold());
+                    document.Add(new Paragraph($"Mes a evalauar: {selectedMonth.ToUpper()}").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
-                    document.Add(new Paragraph("----TKT EN PROCESO----:").SetBold());
+                    document.Add(new Paragraph("------TKT EN PROCESO------:").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                     foreach (var ticket in tickets.Where(t => t.Estado.ToLower() == "en proceso" || t.Estado.ToLower() == "en tramite" || t.Estado.ToLower() == "abierto"))
                     {
-                        document.Add(new Paragraph($"N°TK: {ticket.NTK}"));
+                        document.Add(new Paragraph($"N°TK: {ticket.NTK}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                     }
 
-                    document.Add(new Paragraph("----TKT GENERAL----").SetBold());
-                    document.Add(new Paragraph($"* Cantidad total --> {tickets.Count}"));
-                    document.Add(new Paragraph($"* Cantidad en trámite --> {tickets.Count(t => t.Estado.ToLower() == "en proceso" || t.Estado.ToLower() == "abierto")}"));
-                    document.Add(new Paragraph("----TKT TIPO----").SetBold());
-                    document.Add(new Paragraph($"* Incidente --> {tickets.Count(t => t.TipoTKT.ToLower() == "incidente")}"));
-                    document.Add(new Paragraph($"* Requerimiento --> {tickets.Count(t => t.TipoTKT.ToLower() == "requerimiento" || t.TipoTKT.ToLower() == "elemento pedido")}"));
-                    document.Add(new Paragraph($"* Consulta --> {tickets.Count(t => t.TipoTKT.ToLower() == "consulta")}"));
+                    document.Add(new Paragraph("------TKT GENERAL------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph($"* Cantidad Total --> {tickets.Count}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph($"* Cantidad Cerrado --> {tickets.Count(t => t.Estado.ToLower() == "cerrado" || t.Estado.ToLower() == "cerrado completo" || t.Estado.ToLower() == "derivado") }").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph($"* Cantidad en Trámite --> {tickets.Count(t => t.Estado.ToLower() == "en proceso" || t.Estado.ToLower() == "abierto")}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph("------TKT TIPO------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph($"* Incidente --> {tickets.Count(t => t.TipoTKT.ToLower() == "incidente")}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph($"* Requerimiento --> {tickets.Count(t => t.TipoTKT.ToLower() == "requerimiento" || t.TipoTKT.ToLower() == "elemento pedido")}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new Paragraph($"* Consulta --> {tickets.Count(t => t.TipoTKT.ToLower() == "consulta")}").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
                     var groupedByWS = tickets.GroupBy(t => t.NameWS);
 
-                    document.Add(new Paragraph("----TKT WEB SERVICES----").SetBold());
+                    document.Add(new Paragraph("------TKT WEB SERVICES------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
                     foreach (var group in groupedByWS)
                     {
-                        document.Add(new Paragraph("-------------------------------------").SetBold());
+                        document.Add(new Paragraph("---------------------------------------").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
-                        document.Add(new Paragraph($" WS : {group.Key}").SetBold());
+                        document.Add(new Paragraph($" WS : {group.Key}").SetBold().SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
                         var groupedByType = group.GroupBy(t => t.TipoTKT);
                         foreach (var typeGroup in groupedByType)
                         {
-                            document.Add(new Paragraph($" * {typeGroup.Key} --> {typeGroup.Count()} Tickets"));
+                            document.Add(new Paragraph($" * {typeGroup.Key} --> {typeGroup.Count()} Tickets").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
                         }
                     }
                 }
